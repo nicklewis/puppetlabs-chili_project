@@ -2,13 +2,13 @@ class chili_project::step2 {
   Package[bundler] -> Exec[bundle_install]
 
 # Step 2 install gems with bundler
+  package { ['librmagick-ruby', 'libmysql-ruby']:
+    ensure => present,
+  }
+
   package { bundler:
     ensure => present,
     provider => gem,
-  }
-
-  package { 'librmagick-ruby':
-    ensure => present,
   }
 
   exec { bundle_install:

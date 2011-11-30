@@ -32,8 +32,8 @@ class chili_project::step3 {
 
   exec { "create_chili_db":
       path    => "/usr/bin:/usr/sbin:/bin",
-      command => "mysql -uroot -ppuppet -e 'CREATE DATABASE chiliproject;'",
-      unless  => "mysql -uroot -ppuppet -e 'use chiliproject'",
+      command => "mysql -uroot -e 'CREATE DATABASE chiliproject;'",
+      unless  => "mysql -uroot -e 'use chiliproject'",
       notify  => Exec["grant_chili_db_privileges"],
       logoutput => true,
       require => [ 
@@ -42,7 +42,7 @@ class chili_project::step3 {
 
     "grant_chili_db_privileges":
       path    => "/usr/bin:/usr/sbin:/bin",
-      command => "mysql -uroot -ppuppet -e \"grant all privileges on chiliproject.* to 'chili'@'localhost' identified by 'chili'\"",
+      command => "mysql -uroot -e \"grant all privileges on chiliproject.* to 'chili'@'localhost' identified by 'chili'\"",
       unless  => "mysql -uchili -pchili -Dchili_project -hlocalhost",
       logoutput => true,
       refreshonly => true;
