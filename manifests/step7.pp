@@ -15,6 +15,8 @@ class chili_project::step7 {
 
   service { chili:
     ensure => running,
+    hasrestart => true,
     require => [File['chili init script'], Package['unicorn']],
+    subscribe => Class[chili_project::step3, chili_project::step4, chili_project::step5],
   }
 }

@@ -1,7 +1,7 @@
 class chili_project::step3 {
-  $mysql_cmd = "mysql -D${chili_project::db_name} -P${chili_project::db_port}"
-  $mysql_cmd_root = "$mysql_cmd -u${chili_project::db_user} -p${chili_project::db_pass}"
-  $mysql_cmd_chili = "$mysql_cmd -uroot"
+  $mysql_cmd = "mysql -h${chili_project::db_host} -P${chili_project::db_port}"
+  $mysql_cmd_chili = "$mysql_cmd -u${chili_project::db_user} -p${chili_project::db_pass}"
+  $mysql_cmd_root = "$mysql_cmd -uroot"
 
   $mysqlserver = $operatingsystem ? {
     Ubuntu => mysql-server,
@@ -36,7 +36,7 @@ class chili_project::step3 {
 
   exec { "create_chili_db":
       command => "$mysql_cmd_root -e 'CREATE DATABASE ${chili_project::db_name};'",
-      unless  => "mysql -uroot -e 'use ${chili_project::db_name}'",
+      unless  => "$mysql_cmd_root -e 'use ${chili_project::db_name}'",
       path    => "/usr/bin:/usr/sbin:/bin",
       require => Service[$mysqlservice],
       notify  => Exec["grant_chili_db_privileges"];
