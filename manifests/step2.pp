@@ -12,9 +12,10 @@ class chili_project::step2 {
   }
 
   exec { bundle_install:
+    command   => "bundle install --without=mysql mysql2 sqlite postgres rmagick",
+    unless    => "bundle check",
+    # Add default paths so we can find binaries for building extensions
+    path      => "${chili_project::gem_path}:/bin:/usr/bin:/usr/local/bin",
     cwd       => $chili_project::path,
-    logoutput => true,
-    unless    => "${chili_project::bundle_executable} check",
-    command   => "${chili_project::bundle_executable} install --without=mysql mysql2 sqlite postgres rmagick",
   }
 }

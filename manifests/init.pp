@@ -12,7 +12,7 @@
 #
 # [Remember: No empty lines between comments and class definition]
 class chili_project(
-  $bundle_executable='/usr/bin/bundle',
+  $gem_path='/var/lib/gems/1.8/bin',
   $version,
   $path,
   $configfile="$path/config/configuration.yml.example",
