@@ -16,6 +16,14 @@ class chili_project(
   $version,
   $path,
   $configfile="$path/config/configuration.yml.example",
+  $source_repo='git://github.com/chiliproject/chiliproject.git',
+  $user='chili',
+  $group='chili',
+  $db_user='chili',
+  $db_pass,
+  $db_name='chili_project',
+  $db_host='localhost',
+  $db_port='3306',
   $load_default_data=true
 ) {
   Class[chili_project::step1] ->

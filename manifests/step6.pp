@@ -1,10 +1,10 @@
 class chili_project::step6 {
-  user { 'chili':
+  user { $chili_project::user:
     ensure => present,
-    gid => 'chili',
+    gid => $chili_project::group,
   }
 
-  group { 'chili':
+  group { $chili_project::group:
     ensure => present,
   }
 
@@ -14,8 +14,8 @@ class chili_project::step6 {
           "${chili_project::path}/tmp",
           ]:
     ensure  => directory,
-    owner   => chili,
-    group   => chili,
+    owner   => $chili_project::user,
+    group   => $chili_project::group,
     recurse => true,
     mode    => 644,
   }

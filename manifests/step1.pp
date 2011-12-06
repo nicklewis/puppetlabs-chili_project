@@ -4,7 +4,7 @@ class chili_project::step1 {
     ensure   => present,
     path     => $chili_project::path,
     revision => $chili_project::version,
-    source   => 'git://github.com/chiliproject/chiliproject.git',
+    source   => $chili_project::source_repo,
     provider => git,
   }
 }
