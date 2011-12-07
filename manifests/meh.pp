@@ -1,16 +1,3 @@
-# Class: chili-project
-#
-# This module manages chili-project
-#
-# Parameters:
-#
-# Actions:
-#
-# Requires:
-#
-# Sample Usage:
-#
-# [Remember: No empty lines between comments and class definition]
 class chili_project(
   $gem_path='/var/lib/gems/1.8/bin',
   $version,

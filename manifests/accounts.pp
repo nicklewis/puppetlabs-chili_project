@@ -1,4 +1,4 @@
-class chili_project::step6 {
+class chili_project::accounts {
   user { $chili_project::user:
     ensure => present,
     gid => $chili_project::group,

@@ -1,5 +1,4 @@
-class chili_project::step1 {
-# Step 1 clone source
+class chili_project::media {
   vcsrepo { chili_source:
     ensure   => present,
     path     => $chili_project::path,
@@ -8,3 +7,4 @@ class chili_project::step1 {
     provider => git,
   }
 }
+
