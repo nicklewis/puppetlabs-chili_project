@@ -1,4 +1,8 @@
-class chili_project::service::unicorn {
+class chili_project::service::unicorn(
+  $app_root,
+  $port=80,
+  $gem_path='/var/lib/gems/1.8/bin'
+) {
   # Should we externalize installation of unicorn itself?
   package { unicorn:
     ensure   => present,
