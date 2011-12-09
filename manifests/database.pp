@@ -12,7 +12,6 @@ class chili_project::database {
     path        => "${chili_project::gem_path}:/bin:/usr/bin:/usr/local/bin",
     cwd         => $chili_project::path,
     environment => 'RAILS_ENV=production',
-    require     => Exec[grant_chili_db_privileges],
   }
 
   if $chili_project::load_default_data {
