@@ -1,3 +1,22 @@
+# Class: chili_project::service::unicorn
+#
+# This module installs and configures the unicorn application server for use with Chili Project.
+#
+# Parameters:
+#   $app_root:
+#     Where chili project is installed.
+#   $port:
+#     Port on which unicorn should listen
+#   $gem_path:
+#     Where to find the `unicorn_rails` exeecutable
+#
+# Sample Usage:
+#
+# class { chili_project::service::unicorn:
+#   app_root => '/opt/chiliproject',
+# }
+#
+# [Remember: No empty lines between comments and class definition]
 class chili_project::service::unicorn(
   $app_root,
   $port=80,
