@@ -1,4 +1,4 @@
-class chili_project::step5 {
+class chili_project::database {
   exec { generate_session_store:
     command   => "which bundle && which gem && gem environment path && bundle exec rake generate_session_store",
     creates   => "${chili_project::path}/config/initializers/session_store.rb",
@@ -12,8 +12,6 @@ class chili_project::step5 {
     path        => "${chili_project::gem_path}:/bin:/usr/bin:/usr/local/bin",
     cwd         => $chili_project::path,
     environment => 'RAILS_ENV=production',
-    require     => Exec[grant_chili_db_privileges],
-    subscribe   => [Exec[create_chili_db], Class[chili_project::step4]],
   }
 
   if $chili_project::load_default_data {

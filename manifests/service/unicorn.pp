@@ -1,4 +1,9 @@
-class chili_project::step7 {
+class chili_project::service::unicorn(
+  $app_root,
+  $port=80,
+  $gem_path='/var/lib/gems/1.8/bin'
+) {
+  # Should we externalize installation of unicorn itself?
   package { unicorn:
     ensure   => present,
     provider => gem,
@@ -17,6 +22,6 @@ class chili_project::step7 {
     ensure => running,
     hasrestart => true,
     require => [File['chili init script'], Package['unicorn']],
-    subscribe => Class[chili_project::step3, chili_project::step4, chili_project::step5],
+    subscribe => Class[chili_project::build, chili_project::configuration],
   }
 }

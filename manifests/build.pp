@@ -1,16 +1,4 @@
-class chili_project::step2 {
-  Package[bundler] -> Exec[bundle_install]
-
-# Step 2 install gems with bundler
-  package { ['librmagick-ruby', 'libmysql-ruby']:
-    ensure => present,
-  }
-
-  package { bundler:
-    ensure => present,
-    provider => gem,
-  }
-
+class chili_project::build {
   exec { bundle_install:
     command   => "bundle install --without=mysql mysql2 sqlite postgres rmagick",
     unless    => "bundle check",
